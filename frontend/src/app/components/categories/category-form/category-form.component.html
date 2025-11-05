@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h3>{{ isEdit ? "Edit Category" : "Create Category" }}</h3>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Category Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Enter category name"
+      />
+    </div>
+
+    <button class="btn btn-success" type="submit" [disabled]="form.invalid">
+      {{ isEdit ? "Update" : "Create" }}
+    </button>
+    <button class="btn btn-secondary ms-2" routerLink="/categories">
+      Cancel
+    </button>
+  </form>
+</div>

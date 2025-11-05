@@ -1,0 +1,68 @@
+<div class="container mt-4">
+  <h2>Products</h2>
+
+  <div class="d-flex mb-3">
+    <input
+      class="form-control me-2"
+      placeholder="Search"
+      [(ngModel)]="search"
+      (keyup.enter)="onSearch()"
+    />
+    <select
+      class="form-select me-2"
+      [(ngModel)]="category"
+      (change)="loadProducts()"
+    >
+      <option value="">All Categories</option>
+      <option *ngFor="let c of categories" [value]="c.name">
+        {{ c.name }}
+      </option>
+    </select>
+    <select
+      class="form-select me-2"
+      [(ngModel)]="sort"
+      (change)="changeSort(sort)"
+    >
+      <option value="price_asc">Price: Low → High</option>
+      <option value="price_desc">Price: High → Low</option>
+    </select>
+    <button routerLink="/product/new" class="btn btn-primary w-50 btn-md">
+      Add Product
+    </button>
+  </div>
+
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products" class="align-middle">
+        <td>{{ p.name }}</td>
+        <td>{{ p.category?.name }}</td>
+        <td>{{ p.price | currency }}</td>
+        <td>
+          <img [src]="p.image" [alt]="p.name" width="60" />
+        </td>
+        <td>
+          <button
+            [routerLink]="['/product/edit', p.id]"
+            class="btn btn-sm btn-warning me-2"
+          >
+            Edit
+          </button>
+          <button (click)="deleteProduct(p.id)" class="btn btn-sm btn-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-bulk-upload></app-bulk-upload>
+</div>

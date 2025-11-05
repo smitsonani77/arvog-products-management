@@ -1,0 +1,64 @@
+<div class="container mt-4">
+  <h3>{{ isEdit ? "Edit Product" : "Create Product" }}</h3>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Product Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Enter product name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="price"
+        placeholder="Enter price"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select class="form-select" formControlName="categoryId">
+        <option value="">Select category</option>
+        <option *ngFor="let c of categories" [value]="c.id">
+          {{ c.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Product Image</label>
+      <input
+        type="file"
+        class="form-control"
+        (change)="onImageSelect($event)"
+        accept="image/*"
+      />
+      <div *ngIf="previewUrl" class="mt-2">
+        <img
+          [src]="previewUrl"
+          alt="preview"
+          width="150"
+          class="rounded border"
+        />
+      </div>
+    </div>
+
+    <button
+      class="btn btn-success"
+      type="submit"
+      [disabled]="form.invalid || (!isEdit && form.pristine)"
+    >
+      {{ isEdit ? "Update" : "Add" }}
+    </button>
+    <button class="btn btn-secondary ms-2" type="button" routerLink="/products">
+      Cancel
+    </button>
+  </form>
+</div>

@@ -1,0 +1,19 @@
+<div class="mt-3 p-3 border rounded">
+  <h5>Bulk Upload Products (CSV)</h5>
+  <input
+    type="file"
+    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+    (change)="onFileSelect($event)"
+  />
+
+  <button
+    class="btn btn-success btn-sm ms-2"
+    (click)="upload()"
+    [disabled]="!file"
+  >
+    Upload
+  </button>
+  <div *ngIf="result" class="mt-2 text-success">
+    Inserted: {{ result.inserted }} / Parsed: {{ result.rowsParsed }}
+  </div>
+</div>
