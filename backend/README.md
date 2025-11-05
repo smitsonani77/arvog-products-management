@@ -38,7 +38,7 @@ Make sure the following are installed on your system:
 
 1. Open **phpMyAdmin** from XAMPP (http://localhost/phpmyadmin).
 2. Click on **Databases**.
-3. Create a new database with name **argov_db**:
+3. Create a new database with name **argov_db**
 
 
 ### Install Dependencies
@@ -47,4 +47,17 @@ Navigate to the backend folder and install required npm packages:
 ```
 cd backend
 npm install
+```
+
+### Run the Backend Server
+
+Start the development server using:
+
+```
+npm start
+```
+
+or, if you use Nodemon for auto-restart during development:
+```
+npm run dev
 ```
